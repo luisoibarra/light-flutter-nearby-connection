@@ -87,7 +87,7 @@ class CallbackUtils constructor(private val channel: MethodChannel, private val 
             Log.d("nearby_connections", "onConnectionResult $endpointId with result $result")
             if (result.status.isSuccess) {
                 val data = DeviceJson(endpointId,
-                        if (getDevice(endpointId)?.deviceName == null) "Null-onConnectionResult-success" else getDevice(endpointId)?.deviceName!!,connected)
+                        if (getDevice(endpointId)?.deviceName == null) "Null" else getDevice(endpointId)?.deviceName!!,connected)
                 addDevice(data)
             } else {
                 removeDevice(endpointId)
