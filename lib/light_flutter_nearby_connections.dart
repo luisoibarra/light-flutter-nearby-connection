@@ -1,4 +1,4 @@
-library flutter_nearby_connections;
+library light_flutter_nearby_connections;
 
 import 'dart:async';
 import 'dart:convert';

@@ -1,11 +1,18 @@
-# flutter_nearby_connections
-flutter nearby connections
+# Flutter Nearby Communication
 
-**This is a light version of the repository**
+**This is a light and custom version of [this](https://github.com/VNAPNIC/flutter_nearby_connections) repository**
 
-#### Plugin: [https://pub.dev/packages/flutter_nearby_connections](https://pub.dev/packages/flutter_nearby_connections)
+The project is based on [https://developers.google.com/nearby/connections](https://developers.google.com/nearby/connections). It acts as interface with native Android and iOS APIs and Flutter.
 
-### Flutter plugin supports peer-to-peer connectivity and discovers nearby devices for Android and IOS
-The flutter_nearby_connections plugin supports the discovery of services provided by nearby devices.
-Moreover, the flutter_nearby_connections plugin also supports communicating with those services through message-based data, streaming data, and resources (such as files). The framework uses infrastructure Wi-Fi networks, peer-to-peer Wi-Fi and Bluetooth Personal Area Networks (PAN) for the underlying transport over UDP.
-The project is based on [https://developers.google.com/nearby/connections](https://developers.google.com/nearby/connections)
+## Features
+
+- Peer discovery
+  - Advertising
+  - Browsing
+- Peer communication
+  - Data messages
+
+## Package
+
+- [Original PubDev](https://pub.dev/packages/flutter_nearby_connections)
+- [PubDev](https://pub.dev/packages/light_flutter_nearby_connections)

@@ -1,4 +1,4 @@
-part of flutter_nearby_connections;
+part of light_flutter_nearby_connections;
 
 /// The class [Message] data transmitted between two peers.
 /// it will contain [Message.deviceId] and [Message.message]
