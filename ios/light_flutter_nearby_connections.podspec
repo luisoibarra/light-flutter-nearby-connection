@@ -3,7 +3,7 @@
 # Run `pod lib lint flutter_nearby_connections.podspec' to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'flutter_nearby_connections'
+  s.name             = 'light_flutter_nearby_connections'
   s.version          = '0.0.1'
   s.summary          = 'A new flutter plugin project.'
   s.description      = <<-DESC

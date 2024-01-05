@@ -1,3 +1,8 @@
+## 0.0.2
+
+* Update names for ios project.
+* Update dependencies in example project.
+
 ## 1.1.1
 
 * Update readme - test on the real Android device.

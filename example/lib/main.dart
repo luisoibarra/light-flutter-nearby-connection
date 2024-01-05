@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_nearby_connections/flutter_nearby_connections.dart';
+import 'package:light_flutter_nearby_connections/light_flutter_nearby_connections.dart';
 
 void main() {
   runApp(MyApp());

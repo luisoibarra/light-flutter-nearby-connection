@@ -2,7 +2,7 @@ name: light_flutter_nearby_connections
 description: >-
   Flutter plugin that supports peer-to-peer communication using 
   Nearby Connection API for Android and iOS.
-version: 0.0.1
+version: 0.0.2
 repository: https://github.com/luisoibarra/light-flutter-nearby-connection
 
 environment:
