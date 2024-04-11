@@ -3,24 +3,17 @@
     <!-- flutter_nearby_connections_permissions WiFi P2P Strategy 
         https://developer.android.com/guide/topics/connectivity/wifip2p -->
 
-    <uses-permission 
-        android:required="true"
-        android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission 
-        android:required="true"
-        android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <uses-permission 
-        android:required="true"
-        android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- If your app targets Android 13 (API level 33) or higher, you must declare the NEARBY_WIFI_DEVICES permission. -->
-    <uses-permission android:name="android.permission.NEARBY_WIFI_DEVICES" 
-            android:usesPermissionFlags="neverForLocation" />
-    <!-- On apps that target versions lower than Android 13 (API level 33), 
-    this permission is required instead of NEARBY_WIFI_DEVICES  -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"
-            android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- For all verisons --> 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:minSdkVersion="31" android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:minSdkVersion="29" android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:maxSdkVersion="30" android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:maxSdkVersion="30" android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:minSdkVersion="31" android:name="android.permission.BLUETOOTH_ADVERTISE" />
+    <uses-permission android:minSdkVersion="31" android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:minSdkVersion="31" android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:minSdkVersion="33" android:name="android.permission.NEARBY_WIFI_DEVICES" />
 
    <application
         android:label="connect_nearby"

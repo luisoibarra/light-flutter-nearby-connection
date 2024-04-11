@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:light_flutter_nearby_connections/light_flutter_nearby_connections.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main() {
   runApp(MyApp());
@@ -195,6 +197,48 @@ class _DevicesListScreenState extends State<DevicesListScreen> {
     }
   }
 
+  Future<void> askPermissions() async {
+    final info = await DeviceInfoPlugin().androidInfo;
+    var withPermissions = true;
+    var errors = [];
+    final explicitPermissions = [
+      Permission.locationWhenInUse, // Always?
+      Permission.location, // Always?
+      // Android 12 and higher
+      if (info.version.sdkInt >= 31) Permission.bluetoothAdvertise,
+      if (info.version.sdkInt >= 31) Permission.bluetoothConnect,
+      if (info.version.sdkInt >= 31) Permission.bluetoothScan,
+      // Android 13 and higher
+      if (info.version.sdkInt >= 33) Permission.nearbyWifiDevices,
+    ];
+    try {
+      if (explicitPermissions.isNotEmpty) {
+        final other = await explicitPermissions.request();
+        final locationStatus = await Permission.location.status;
+        if (!locationStatus.isGranted) {
+          errors.add("Location is not enabled");
+        }
+        final otherPermissions =
+            !other.values.any((element) => !element.isGranted);
+        withPermissions &= otherPermissions;
+        if (!otherPermissions) {
+          errors.add("Some permissions weren't given");
+        }
+        log("requestPermissions granted: $other");
+      }
+    } catch (e) {
+      errors.add("Error occurred while requesting permissions");
+    }
+    if (errors.isNotEmpty) {
+      log("ERROR: requestPermissions failed: $errors");
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                content: Text("Errors:\n\n${errors.join("\n")}"),
+              ));
+    }
+  }
+
   String getButtonStateName(SessionState state) {
     switch (state) {
       case SessionState.notConnected:
@@ -283,6 +327,7 @@ class _DevicesListScreenState extends State<DevicesListScreen> {
   void init() async {
     nearbyService = NearbyService();
     String devInfo = '';
+    await askPermissions();
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     if (Platform.isAndroid) {
       AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
@@ -290,7 +335,7 @@ class _DevicesListScreenState extends State<DevicesListScreen> {
     }
     if (Platform.isIOS) {
       IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-      devInfo = iosInfo.localizedModel!;
+      devInfo = iosInfo.localizedModel;
     }
     await nearbyService.init(
         serviceType: 'mpconn',
