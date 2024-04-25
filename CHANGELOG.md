@@ -1,3 +1,7 @@
+## 0.0.4
+
+* Android 14 new permissions for foreground service added.
+
 ## 0.0.2
 
 * Update names for ios project.

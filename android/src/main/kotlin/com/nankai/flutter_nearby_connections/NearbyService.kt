@@ -16,7 +16,8 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.android.gms.nearby.Nearby
 import com.google.android.gms.nearby.connection.*
-
+import android.Manifest
+import android.content.pm.ServiceInfo;
 
 const val NOTIFICATION_ID = 101
 const val CHANNEL_ID = "channel"
@@ -29,7 +30,11 @@ class NearbyService : Service() {
     override fun onCreate() {
         super.onCreate()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForeground(NOTIFICATION_ID, getNotification())
+            startForeground(NOTIFICATION_ID, getNotification(), if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        ServiceInfo.FOREGROUND_SERVICE_TYPE_CONNECTED_DEVICE
+    } else {
+        0
+    })
         }
     }
 
@@ -98,7 +103,7 @@ class NearbyService : Service() {
         connectionsClient.stopAllEndpoints()
     }
 
-    private fun getNotification(): Notification? {
+    private fun getNotification(): Notification {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val serviceChannel = NotificationChannel(
                 CHANNEL_ID, "Foreground Service Channel",
